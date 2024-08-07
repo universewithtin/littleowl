@@ -40,6 +40,8 @@ class Timer:
                     return
                 case "help":
                     help()
+                case "define":
+                    self.description = await ainput(tattle_str(str(self.username), "[DESCRIPTION] >>> "))
                 case "time":
                     await self.time_left()
                 case "cancel":
@@ -68,7 +70,8 @@ class Timer:
                 await timer_task
             except asyncio.CancelledError:
                 if self.stop_reason == "cancelled":
-                    return
+                    tattle("", "Timer was cancelled", 1)
+                    return self.time_start, self.time_end, self.stop_time, self.stop_reason
                 else:
                     finish_message = "Timer cancelled. The cause it: " + str(self.stop_reason)
                     tattle("", finish_message, 1)

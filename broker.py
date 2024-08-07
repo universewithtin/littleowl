@@ -18,7 +18,8 @@ def help():
     stop - stop timer(need to write a reason with next input);
     time - on how much time left(obviously);
     cancel - as if it never happened;
-    tired - how many timers done today(under rework!)."""
+    tired - how many timers done today(under rework!).
+    define - new description to current timer."""
     tattle("", help_text, 1)
 
 

@@ -35,7 +35,13 @@ def create_config():
     configurator()
 
 def save_csv(desc, start, end, stop, reason):
-    header = ["Description", "Date", "Time of start", "Time of finish", "Time if stopped", "Reason"]
+    header = [
+        "Description", 
+        "Date", 
+        "Time of start", 
+        "Time of finish", 
+        "Time if stopped", 
+        "Reason"]
     line = [
         desc,
         time.strftime('%Y-%m-%d', time.localtime(start)),
@@ -81,14 +87,25 @@ def main(time, desc):
     configurator()
     timer = Timer(minutes, username)
     start, end, stop, reason = asyncio.run(timer.main())
+    if desc == "":
+        input(tattle_str("", "Description is not defined yet >>> "))
     header, line = save_csv(desc, start, end, stop, reason)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("number", type=int, help="Number of minutes")
-    parser.add_argument("description", type=str, nargs="+", help="Description of timer")
+    parser.add_argument("number", type=int, nargs="?", help="Number of minutes")
+    parser.add_argument("--description", type=str, nargs="*", help="Description of timer")
 
     args = parser.parse_args()
 
-    main(args.number, ' '.join(args.description))
+    if args.number:
+        minutes = int(args.number)
+    else:
+        minutes = input(tattle_str("", "How long should timer run? >>> "))
+    if args.description:
+        desc = args.description
+    else:
+        desc = input(tattle_str("", "Enter timer description >>> "))
+
+    main(int(minutes), desc)
