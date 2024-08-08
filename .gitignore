@@ -1,0 +1,8 @@
+__pycache__/
+build/
+config.ini
+dist/
+littleowl.spec
+log.csv
+venv/
+.idea/
