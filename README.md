@@ -10,7 +10,7 @@ Was first used as tasklist tracker (since 2022), but coded in the most specific 
 
 ## TO DO
 
-* Pick an audio for winotify
+* ~~Pick an audio for winotify~~
 * Add standard timer, break ratio setting in configuration
 * Add notification and logging setting in configuration
 * Completely new Obsidian interaction (once note pattern there stabilzes)
@@ -31,7 +31,7 @@ Was first used as tasklist tracker (since 2022), but coded in the most specific 
 1) Call littleowl. Either:
     * Pass a digit or number as minute count for timer. Pass any text right after and that would be timer description
     * OR write it right after program initiation on prompted input
-    * Number is necessary for a start, but description can be changed or added anytime
+    * > Number is necessary for a start, but description can be changed or added anytime
 2) Configuration check OR configuration file creation 
 3) Timer starts. Toast with notification.
     * Few commands during timer are available

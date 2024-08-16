@@ -6,3 +6,4 @@ littleowl.spec
 log.csv
 venv/
 .idea/
+test.py

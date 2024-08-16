@@ -31,6 +31,8 @@ def create_config():
     with open("config.ini", "w") as f:
         username_input = input(tattle_str("", "Enter your username: "))
         config["DEFAULT"]["username"] = username_input
+        exercise_frequency = input(tattle_str("", "Take a short brake every..."))
+        config["DEFAULT"]["Exercise_frequency"] = exercise_frequency
         config.write(f)
     configurator()
 
@@ -89,7 +91,7 @@ def main(time, desc):
     start, end, stop, reason = asyncio.run(timer.main())
     if desc == "":
         input(tattle_str("", "Description is not defined yet >>> "))
-    header, line = save_csv(desc, start, end, stop, reason)
+    header, line = save_csv(desc, start, end, stop, reason) #to send it somewhere(for later)
 
 
 if __name__ == "__main__":
@@ -98,11 +100,18 @@ if __name__ == "__main__":
     parser.add_argument("--description", type=str, nargs="*", help="Description of timer")
 
     args = parser.parse_args()
-
+    
+    minutes = None
     if args.number:
         minutes = int(args.number)
     else:
-        minutes = input(tattle_str("", "How long should timer run? >>> "))
+        while True:
+            try:
+                minutes = int(input(tattle_str("", "How long should timer run? >>> ")))
+            except ValueError:
+                tattle("", "Use correct number, please!", 1)
+            if type(minutes) == int:
+                break
     if args.description:
         desc = args.description
     else:
